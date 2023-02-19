@@ -5,10 +5,16 @@ ORG=revanced
 REPO=revanced-patches
 BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url" | grep ".jar")
 
 for asset in $assets; do
     curl -OL $asset
+done
+
+files=$(ls | grep "patches" | sort -r | tail -n +2)
+
+for file in $files; do
+    rm $file
 done
 
 
@@ -16,10 +22,16 @@ ORG=revanced
 REPO=revanced-cli
 BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url" | grep ".jar")
 
 for asset in $assets; do
     curl -OL $asset
+done
+
+files=$(ls | grep "cli" | sort -r | tail -n +2)
+
+for file in $files; do
+    rm $file
 done
 
 
@@ -27,10 +39,16 @@ ORG=revanced
 REPO=revanced-integrations
 BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url" | grep ".jar")
 
 for asset in $assets; do
     curl -OL $asset
+done
+
+files=$(ls | grep "integrations" | sort -r | tail -n +2)
+
+for file in $files; do
+    rm $file
 done
 
 
