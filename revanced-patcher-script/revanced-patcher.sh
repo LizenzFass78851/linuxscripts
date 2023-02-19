@@ -39,7 +39,7 @@ ORG=revanced
 REPO=revanced-integrations
 BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url" | grep ".jar")
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url" | grep ".apk")
 
 for asset in $assets; do
     curl -OL $asset
