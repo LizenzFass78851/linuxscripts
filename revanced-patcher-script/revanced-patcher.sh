@@ -3,8 +3,9 @@
 ## download files
 ORG=revanced
 REPO=revanced-patches
+BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r '.[0].assets[].browser_download_url')
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
 
 for asset in $assets; do
     curl -OL $asset
@@ -13,8 +14,9 @@ done
 
 ORG=revanced
 REPO=revanced-cli
+BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r '.[0].assets[].browser_download_url')
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
 
 for asset in $assets; do
     curl -OL $asset
@@ -23,8 +25,9 @@ done
 
 ORG=revanced
 REPO=revanced-integrations
+BRANCH=main
 
-assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r '.[0].assets[].browser_download_url')
+assets=$(curl https://api.github.com/repos/$ORG/$REPO/releases | jq -r ".[] | select(.target_commitish == \"$BRANCH\") | .assets[].browser_download_url")
 
 for asset in $assets; do
     curl -OL $asset
