@@ -1,10 +1,13 @@
 #!/bin/sh
 
-#Ubuntu based Armbian only
+# Ubuntu based Armbian only
 
 apt update
 test -a /bin/xfce4-session || apt install -y xubuntu-desktop 
-apt install -y armbian-config freerdp2-x11 language-pack-de language-pack-gnome-de
+apt install -y armbian-config freerdp2-x11 
+
+# if another language is desired then adjust accordingly here
+apt install -y language-pack-de language-pack-gnome-de
 
 cp rpitc.tar.xz /opt
 cd /opt
