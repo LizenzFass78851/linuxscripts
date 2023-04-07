@@ -17,6 +17,8 @@ rm rpitc.tar.xz
 USERS="$(ls /home/)"
 for USER in ${USERS}; do
         passwd $USER -d
+        echo "[SeatDefaults]" > /etc/lightdm/lightdm.conf.d/90-xubuntu.conf
+        echo "autologin-user = $USER" >> /etc/lightdm/lightdm.conf.d/90-xubuntu.conf
         mkdir /home/$USER/Desktop/
 	cp ./config/xFreeRDP.desktop /home/$USER/Desktop/
 done
