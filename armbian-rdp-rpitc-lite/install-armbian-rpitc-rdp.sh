@@ -16,6 +16,7 @@ rm rpitc.tar.xz
 
 USERS="$(ls /home/)"
 for USER in ${USERS}; do
+        passwd $USER -d
         mkdir /home/$USER/Desktop/
 	cp ./config/xFreeRDP.desktop /home/$USER/Desktop/
 done
