@@ -106,6 +106,8 @@ for SNAP1 in ${SNAPS}; do
 	fi
 done
 
+update-alternatives --set x-terminal-emulator /usr/bin/tilix.wrapper
+
 echo ${HOSTNAME} > /etc/hostname
 
 ## only for local testing
