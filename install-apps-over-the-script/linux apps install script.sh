@@ -1,6 +1,7 @@
 #!/bin/bash
 
-## for ubuntu 22.04 and mint 21.x
+# for ubuntu 22.04 and linuxmint 21.x
+# config Links, Apps and Hostname
 
 LINKS="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
 https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
@@ -60,11 +61,15 @@ winetricks
 wireshark-qt
 xrdp"
 
+SNAPS="p7zip-desktop"
+
 HOSTNAME="Test-PC"
 
+# ----------------------------------------------------------------------------------
+
+rm *.deb
+
 USERS=$(ls /home/)
-
-
 
 for TARG1 in ${LINKS}; do
 	wget $TARG1
@@ -79,16 +84,38 @@ for TARG1 in ${LINKS}; do
 	fi
 done
 
+rm /etc/apt/preferences.d/nosnap.pref
 apt update
 
-apt install -yy ${APPS} $(pwd)/$1*.deb
+apt install -yy \
+  snapd \
+  ${APPS} \
+  $(pwd)/$1*.deb
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+	echo installing apps failed;
+	exit 1;
+fi
 
+for SNAP1 in ${SNAPS}; do
+	snap install $SNAP1
+	RESULT=$?
+	if [ $RESULT -ne 0 ]; then
+		echo install snap $SNAP1 failed;
+		exit 1;
+	fi
+done
 
 echo ${HOSTNAME} > /etc/hostname
 
 ## only for local testing
 #passwd -d root 
-
+#
 #for TARG2 in ${USERS}; do
 #	passwd -d $TARG2
 #done
+
+rm *.deb
+
+echo Installation successful
+
