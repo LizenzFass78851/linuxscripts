@@ -14,6 +14,9 @@ https://dl.discordapp.net/apps/linux/0.0.24/discord-0.0.24.deb
 https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 https://github.com/shiftkey/desktop/releases/download/release-3.1.1-linux1/GitHubDesktop-linux-3.1.1-linux1.deb"
 
+NEEDEDAPPS="snapd
+tilix"
+
 APPS="adb
 aria2
 bleachbit
@@ -88,7 +91,7 @@ rm /etc/apt/preferences.d/nosnap.pref
 apt update
 
 apt install -yy \
-  snapd \
+  ${NEEDEDAPPS} \
   ${APPS} \
   $(pwd)/$1*.deb
 RESULT=$?
