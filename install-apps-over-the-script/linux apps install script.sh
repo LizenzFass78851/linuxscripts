@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# for ubuntu 22.04 and linuxmint 21.x
+# for linuxmint 21.x (ubuntu 22.04)
 # config Links, Apps and Hostname
 
 LINKS="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
@@ -119,6 +119,8 @@ echo ${HOSTNAME} > /etc/hostname
 #for TARG2 in ${USERS}; do
 #	passwd -d $TARG2
 #done
+#
+#sed -i 's/autologin-user.*$/ /g' /etc/lightdm/lightdm.conf
 
 rm *.deb
 
