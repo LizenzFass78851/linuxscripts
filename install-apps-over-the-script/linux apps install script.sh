@@ -7,8 +7,8 @@ LINKS="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
 https://dn3.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.6_amd64.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-https://download.virtualbox.org/virtualbox/7.0.6/virtualbox-7.0_7.0.6-155176~Ubuntu~jammy_amd64.deb
-https://download.virtualbox.org/virtualbox/7.0.6/Oracle_VM_VirtualBox_Extension_Pack-7.0.6a-155176.vbox-extpack
+https://download.virtualbox.org/virtualbox/6.1.44/virtualbox-6.1_6.1.44-156814~Ubuntu~jammy_amd64.deb
+https://download.virtualbox.org/virtualbox/6.1.44/Oracle_VM_VirtualBox_Extension_Pack-6.1.44-156814.vbox-extpack
 https://repo.steampowered.com/steam/archive/stable/steam_latest.deb
 https://dl.discordapp.net/apps/linux/0.0.24/discord-0.0.24.deb
 https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
