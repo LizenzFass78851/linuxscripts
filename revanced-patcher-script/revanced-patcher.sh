@@ -1,10 +1,12 @@
 #!/bin/bash
 
+
+# youtube
 ## patch apk
 java \
   -jar $(ls ./revanced-cli*.jar) \
   -a "$(ls ./com.google.android.youtube*.apk)" \
-  -o revanced.apk \
+  -o youtube_revanced.apk \
   -b $(ls ./revanced-patches*.jar) \
   -m $(ls ./revanced-integrations*.apk) \
   -e swipe-controls \
@@ -18,5 +20,27 @@ java \
   -jar apksigner.jar sign \
   --ks "revanced-self-build.keystore" \
   --ks-pass pass:$(cat ./revanced-self-build.password.txt) \
-  --out "revanced_signed.apk" \
-  "revanced.apk"
+  --out "youtube_revanced_signed.apk" \
+  "youtube_revanced.apk"
+
+
+
+# twitch
+## patch apk
+java \
+  -jar $(ls ./revanced-cli*.jar) \
+  -a "$(ls ./tv.twitch.android.app*.apk)" \
+  -o twitch_revanced.apk \
+  -b $(ls ./revanced-patches*.jar) \
+  -m $(ls ./revanced-integrations*.apk) \
+  -e show-deleted-messages \
+  -i change-package-name
+
+
+## sign apk
+java \
+  -jar apksigner.jar sign \
+  --ks "revanced-self-build.keystore" \
+  --ks-pass pass:$(cat ./revanced-self-build.password.txt) \
+  --out "twitch_revanced_signed.apk" \
+  "twitch_revanced.apk"
