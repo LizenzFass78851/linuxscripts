@@ -34,7 +34,6 @@ java \
   -b $(ls ./revanced-patches*.jar) \
   -m $(ls ./revanced-integrations*.apk) \
   -e show-deleted-messages \
-  -i change-package-name
 
 
 ## sign apk
