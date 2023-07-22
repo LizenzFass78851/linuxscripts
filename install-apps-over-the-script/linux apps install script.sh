@@ -118,7 +118,7 @@ chmod a+r /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/winehq-archive.key
 
 echo \
-  "deb [arch="amd64" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
