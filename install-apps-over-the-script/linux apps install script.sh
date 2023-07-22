@@ -25,8 +25,12 @@ clamav
 clamav-daemon
 clamav-freshclam
 clamtk
-docker
+containerd.io
+docker-buildx-plugin
+docker-ce
+docker-ce-cli
 docker-compose
+docker-compose-plugin
 fastboot
 firefox
 gimp
@@ -59,7 +63,7 @@ unzip
 vlc
 vorta
 wget
-wine
+winehq-stable
 winetricks
 wireshark-qt
 xrdp"
@@ -69,6 +73,12 @@ SNAPS="p7zip-desktop"
 HOSTNAME="Test-PC"
 
 # ----------------------------------------------------------------------------------
+function errorrmessage() {
+	if [ $RESULT -ne 0 ]; then
+		echo add apt repo failed;
+		exit 1;
+	fi
+}
 
 rm *.deb
 
@@ -87,8 +97,39 @@ for TARG1 in ${LINKS}; do
 	fi
 done
 
+apt remove -y docker docker-engine docker.io containerd runc
+
+dpkg --add-architecture i386 
+
+apt update && \
+  apt install -y \
+    ca-certificates \
+    curl \
+    gnupg
+
+install -m 0755 -d /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+errorrmessage
+curl -fsSL https://dl.winehq.org/wine-builds/winehq.key | sudo gpg --dearmor -o /etc/apt/keyrings/winehq.gpg
+errorrmessage
+
+chmod a+r /etc/apt/keyrings/docker.gpg
+chmod a+r /etc/apt/keyrings/winehq.gpg
+
+echo \
+  "deb [arch="amd64" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo \
+  "deb [arch="amd64 i386" signed-by=/etc/apt/keyrings/winehq.gpg] https://dl.winehq.org/wine-builds/ubuntu \
+  "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" main" | \
+  tee /etc/apt/sources.list.d/winehq.list > /dev/null
+
 rm /etc/apt/preferences.d/nosnap.pref
+
 apt update
+errorrmessage
 
 apt install -yy \
   ${NEEDEDAPPS} \
