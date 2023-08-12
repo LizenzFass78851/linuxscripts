@@ -1,65 +1,40 @@
 #!/bin/bash
 
-# Build all targets as of v2021.1 gluon, also broken and use all cpu cores (broken can be set in the script)
+# Build all targets as of the defined version from gluon, also broken and use all cpu cores (broken can be set in the script)
 # If there were changes to the targets during gluon, this can also be set in the script
 
 
 BROKENS="1"
 
-# for gluon v2021.1.2
-TARGETS="ar71xx-generic
-ar71xx-mikrotik
-ar71xx-nand
-ar71xx-tiny
-ath79-generic
-brcm2708-bcm2708
-brcm2708-bcm2709
-brcm2708-bcm2710
+# for gluon v2023.1
+TARGETS="ath79-generic
+ath79-mikrotik
+ath79-nand
+bcm27xx-bcm2708
+bcm27xx-bcm2709
+bcm27xx-bcm2710
 ipq40xx-generic
+ipq40xx-mikrotik
 ipq806x-generic
 lantiq-xrx200
 lantiq-xway
-mpc85xx-generic
+mediatek-mt7622
+mpc85xx-p1010
 mpc85xx-p1020
 mvebu-cortexa9
 ramips-mt7620
 ramips-mt7621
 ramips-mt76x8
-ramips-rt305x
+realtek-rtl838x
+rockchip-armv8
 sunxi-cortexa7
 x86-generic
 x86-geode
 x86-legacy
 x86-64"
 
-# for gluon current master from 24.08.2022
-#-TARGETS="ath79-generic
-#-ath79-mikrotik
-#-ath79-nand
-#-bcm27xx-bcm2708
-#-bcm27xx-bcm2709
-#-bcm27xx-bcm2710
-#-ipq40xx-generic
-#-ipq40xx-mikrotik
-#-ipq806x-generic
-#-lantiq-xrx200
-#-lantiq-xway
-#-mediatek-mt7622
-#-mpc85xx-p1010
-#-mpc85xx-p1020
-#-mvebu-cortexa9
-#-ramips-mt7620
-#-ramips-mt7621
-#-ramips-mt76x8
-#-rockchip-armv8
-#-sunxi-cortexa7
-#-x86-generic
-#-x86-geode
-#-x86-legacy
-#-x86-64"
 
-
-git clone --branch v2021.1.2 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2023.1 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
