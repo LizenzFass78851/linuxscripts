@@ -4,6 +4,7 @@
 # config Links, Apps and Hostname
 
 LINKS="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
+https://github.com/rustdesk/rustdesk/releases/download/1.2.1/rustdesk-1.2.1-x86_64.deb
 https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.6_amd64.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
