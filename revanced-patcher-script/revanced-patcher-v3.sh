@@ -31,7 +31,6 @@ java \
 java \
   -jar $(ls ./revanced-cli*.jar) patch \
   --patch-bundle $(ls ./revanced-patches*.jar) \
-  --include change-package-name \
   --exclude show-deleted-messages \
   --out twitch_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
