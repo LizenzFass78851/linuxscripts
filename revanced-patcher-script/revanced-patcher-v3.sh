@@ -10,6 +10,7 @@ java \
   --exclude hide-autoplay-button \
   --exclude always-autorepeat \
   --exclude downloads \
+  --exclude alternative-thumbnails \
   --out youtube_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
   "$(ls ./com.google.android.youtube*.apk)"
@@ -44,3 +45,4 @@ java \
   --ks-pass pass:$(cat ./revanced-self-build.password.txt) \
   --out "twitch_revanced_signed.apk" \
   "twitch_revanced.apk"
+
