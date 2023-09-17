@@ -1,9 +1,9 @@
-# Armbian RDP RPITC (Lite)
-this is a small script that loads the rpitc data on an armbian installation (can be used only with xfce desktop) and from it a mini thinclient with currently nothing but xfreerdp to use an armbian-enabled device as a thinclient to connect to a e.g. terminal server (windows desktop) or similar.
+## Armbian RDP RPITC (Lite)
+- this is a small script that loads the rpitc data on an armbian installation (can be used only with xfce desktop) and from it a mini thinclient with currently nothing but xfreerdp to use an armbian-enabled device as a thinclient to connect to a e.g. terminal server (windows desktop) or similar.
 ##### only applicable to ubuntu based armbian with xfce desktop
 
 
-### to run the following:
+#### to run the following:
 ````
 wget https://github.com/LizenzFass78851/linuxscripts/raw/main/armbian-rdp-rpitc-lite/install-armbian-rpitc-rdp.sh 
 wget https://github.com/LizenzFass78851/linuxscripts/raw/main/armbian-rdp-rpitc-lite/rpitc.tar.xz
