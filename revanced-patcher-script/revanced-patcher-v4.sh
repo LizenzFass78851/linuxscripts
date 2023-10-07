@@ -6,11 +6,11 @@
 java \
   -jar $(ls ./revanced-cli*.jar) patch \
   --patch-bundle $(ls ./revanced-patches*.jar) \
-  --exclude swipe-controls \
-  --exclude hide-autoplay-button \
-  --exclude always-autorepeat \
-  --exclude downloads \
-  --exclude alternative-thumbnails \
+  --exclude "Swipe controls" \
+  --exclude "Hide autoplay button" \
+  --exclude "Always autorepeat" \
+  --exclude "Downloads" \
+  --exclude "Alternative thumbnails" \
   --out youtube_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
   "$(ls ./com.google.android.youtube*.apk)"
@@ -31,7 +31,7 @@ java \
 java \
   -jar $(ls ./revanced-cli*.jar) patch \
   --patch-bundle $(ls ./revanced-patches*.jar) \
-  --exclude show-deleted-messages \
+  --exclude "Show deleted messages" \
   --out twitch_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
   "$(ls ./tv.twitch.android.app*.apk)"
