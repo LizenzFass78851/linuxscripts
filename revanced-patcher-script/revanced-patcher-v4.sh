@@ -1,11 +1,19 @@
 #!/bin/bash
 
+# script.sh f
+forced=${1:-n}
+forcemark=""
+
+if [ "$forced" = "f" ]; then
+	forcemark="--force"
+fi
 
 # youtube
 ## patch apk
 java \
   -jar $(ls ./revanced-cli*.jar) patch \
   --patch-bundle $(ls ./revanced-patches*.jar) \
+  $forcemark \
   --exclude "Swipe controls" \
   --exclude "Hide autoplay button" \
   --exclude "Always autorepeat" \
@@ -31,6 +39,7 @@ java \
 java \
   -jar $(ls ./revanced-cli*.jar) patch \
   --patch-bundle $(ls ./revanced-patches*.jar) \
+  $forcemark \
   --exclude "Show deleted messages" \
   --out twitch_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
