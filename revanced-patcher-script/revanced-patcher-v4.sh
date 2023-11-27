@@ -19,6 +19,7 @@ java \
   --exclude "Always autorepeat" \
   --exclude "Downloads" \
   --exclude "Alternative thumbnails" \
+  --exclude "Disable fullscreen ambient mode" \
   --out youtube_revanced.apk \
   --merge $(ls ./revanced-integrations*.apk) \
   "$(ls ./com.google.android.youtube*.apk)"
