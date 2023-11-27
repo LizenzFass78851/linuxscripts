@@ -6,7 +6,7 @@
 
 BROKENS="1"
 
-# for gluon v2023.1
+# for gluon v2023.1.1
 TARGETS="ath79-generic
 ath79-mikrotik
 ath79-nand
@@ -34,7 +34,7 @@ x86-legacy
 x86-64"
 
 
-git clone --branch v2023.1 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2023.1.1 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
