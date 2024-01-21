@@ -6,22 +6,18 @@
 
 BROKENS="1"
 
-# for gluon v2023.2
-TARGETS="armsr-armv7
-armsr-armv8
-ath79-generic
+# for gluon v2023.1.1
+TARGETS="ath79-generic
 ath79-mikrotik
 ath79-nand
 bcm27xx-bcm2708
 bcm27xx-bcm2709
 bcm27xx-bcm2710
-bcm27xx-bcm2711
 ipq40xx-generic
 ipq40xx-mikrotik
 ipq806x-generic
 lantiq-xrx200
 lantiq-xway
-mediatek-filogic
 mediatek-mt7622
 mpc85xx-p1010
 mpc85xx-p1020
@@ -38,7 +34,7 @@ x86-legacy
 x86-64"
 
 
-git clone --branch v2023.2 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2023.1.1 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update

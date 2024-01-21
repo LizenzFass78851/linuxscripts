@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 ## of https://gitlab.com/FreifunkChemnitz/gluon-build/-/blob/main/Dockerfile
-RUN git clone --branch v2023.2 https://github.com/freifunk-gluon/gluon.git
+RUN git clone --branch v2023.1.1 https://github.com/freifunk-gluon/gluon.git
 WORKDIR /gluon
 RUN git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site && \
     make update && \
