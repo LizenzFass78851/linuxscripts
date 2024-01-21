@@ -3,17 +3,17 @@
 # for linuxmint 21.x (ubuntu 22.04)
 # config Links, Apps and Hostname
 
-LINKS="https://download.anydesk.com/linux/anydesk_6.2.1-1_amd64.deb
-https://github.com/rustdesk/rustdesk/releases/download/1.2.1/rustdesk-1.2.1-x86_64.deb
+LINKS="https://download.anydesk.com/linux/anydesk_6.3.0-1_amd64.deb
+https://github.com/rustdesk/rustdesk/releases/download/1.2.3/rustdesk-1.2.3-x86_64.deb
 https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.6_amd64.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-https://download.virtualbox.org/virtualbox/6.1.46/virtualbox-6.1_6.1.46-158378~Ubuntu~jammy_amd64.deb
-https://download.virtualbox.org/virtualbox/6.1.46/Oracle_VM_VirtualBox_Extension_Pack-6.1.46.vbox-extpack
+https://download.virtualbox.org/virtualbox/6.1.50/virtualbox-6.1_6.1.50-161033~Ubuntu~jammy_amd64.deb
+https://download.virtualbox.org/virtualbox/6.1.50/Oracle_VM_VirtualBox_Extension_Pack-6.1.50.vbox-extpack
 https://repo.steampowered.com/steam/archive/stable/steam_latest.deb
-https://dl.discordapp.net/apps/linux/0.0.28/discord-0.0.28.deb
+https://dl.discordapp.net/apps/linux/0.0.40/discord-0.0.40.deb
 https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-https://github.com/shiftkey/desktop/releases/download/release-3.2.5-linux1/GitHubDesktop-linux-3.2.5-linux1.deb"
+https://github.com/shiftkey/desktop/releases/download/release-3.3.6-linux3/GitHubDesktop-linux-amd64-3.3.6-linux3.deb"
 
 NEEDEDAPPS="snapd
 tilix"
@@ -30,7 +30,6 @@ containerd.io
 docker-buildx-plugin
 docker-ce
 docker-ce-cli
-docker-compose
 docker-compose-plugin
 fastboot
 firefox
@@ -77,6 +76,13 @@ HOSTNAME="Test-PC"
 function errorrmessage() {
 	if [ $RESULT -ne 0 ]; then
 		echo add apt repo failed;
+		exit 1;
+	fi
+}
+
+function errorrmessage2() {
+	if [ $RESULT -ne 0 ]; then
+		echo install docker-compose failed;
 		exit 1;
 	fi
 }
@@ -138,6 +144,14 @@ if [ $RESULT -ne 0 ]; then
 	echo installing apps failed;
 	exit 1;
 fi
+
+
+curl -SL $(curl -L -s https://api.github.com/repos/docker/compose/releases/latest | grep -o -E "https://(.*)docker-compose-linux-$(uname -m)") -o /usr/local/bin/docker-compose
+errorrmessage2
+
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
 
 for SNAP1 in ${SNAPS}; do
 	snap install $SNAP1
