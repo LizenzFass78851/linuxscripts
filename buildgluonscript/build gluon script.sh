@@ -12,7 +12,7 @@ cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
 
-
+export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')"
 TARGETS="$(make list-targets)"
 
 for TARG in ${TARGETS}; do
