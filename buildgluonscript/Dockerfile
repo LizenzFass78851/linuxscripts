@@ -34,5 +34,9 @@ RUN git clone --branch v2023.1.1 https://github.com/freifunk-gluon/gluon.git
 WORKDIR /gluon
 RUN git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site && \
     make update && \
+    export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')" && \
     for target in $(make list-targets); do echo downloading ${target} && make GLUON_TARGET=${target} -j$(nproc||printf "2") download; done && \
-    for target in $(make list-targets); do echo building ${target} && make GLUON_TARGET=${target} -j$(nproc||printf "2"); done
+    for target in $(make list-targets); do echo building ${target} && make GLUON_TARGET=${target} -j$(nproc||printf "2"); done && \
+    make manifest GLUON_AUTOUPDATER_BRANCH=nightly && \
+    make manifest GLUON_AUTOUPDATER_BRANCH=experimental && \
+    make manifest GLUON_AUTOUPDATER_BRANCH=stable
