@@ -70,3 +70,7 @@ for TARG in ${TARGETS}; do
 		fi
 	fi
 done
+
+make manifest GLUON_AUTOUPDATER_BRANCH=nightly
+make manifest GLUON_AUTOUPDATER_BRANCH=experimental
+make manifest GLUON_AUTOUPDATER_BRANCH=stable
