@@ -39,6 +39,7 @@ cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
 
+export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')"
 
 for TARG in ${TARGETS}; do
 	echo downloading $TARG
