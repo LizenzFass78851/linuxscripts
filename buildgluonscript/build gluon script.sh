@@ -7,7 +7,7 @@
 BROKENS="1"
 
 
-git clone --branch v2023.1.1 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2023.1.2 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
@@ -44,7 +44,3 @@ for TARG in ${TARGETS}; do
 		fi
 	fi
 done
-
-make manifest GLUON_AUTOUPDATER_BRANCH=nightly
-make manifest GLUON_AUTOUPDATER_BRANCH=experimental
-make manifest GLUON_AUTOUPDATER_BRANCH=stable
