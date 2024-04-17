@@ -8,8 +8,8 @@ https://github.com/rustdesk/rustdesk/releases/download/1.2.3-2/rustdesk-1.2.3-2-
 https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/dl/linux/direct/google-earth-pro-stable_7.3.6_amd64.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-https://download.virtualbox.org/virtualbox/7.0.14/virtualbox-7.0_7.0.14-161095~Ubuntu~jammy_amd64.deb
-https://download.virtualbox.org/virtualbox/7.0.14/Oracle_VM_VirtualBox_Extension_Pack-7.0.14.vbox-extpack
+https://download.virtualbox.org/virtualbox/7.0.16/virtualbox-7.0_7.0.16-162802~Ubuntu~jammy_amd64.deb
+https://download.virtualbox.org/virtualbox/7.0.16/Oracle_VM_VirtualBox_Extension_Pack-7.0.16.vbox-extpack
 https://repo.steampowered.com/steam/archive/stable/steam_latest.deb
 https://dl.discordapp.net/apps/linux/0.0.49/discord-0.0.49.deb
 https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
