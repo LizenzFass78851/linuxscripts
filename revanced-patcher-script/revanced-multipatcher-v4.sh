@@ -13,8 +13,9 @@ YOUTUBEAPKS="$(ls ./com.google.android.youtube*.apk)"
 
 ## patch apk
 for YOUTUBEAPK in ${YOUTUBEAPKS}; do
+	echo patch $YOUTUBEAPK
 	java \
-	  -jar $(ls ./revanced-cli*.jar) patch \
+          -jar $(ls ./revanced-cli*.jar) patch \
 	  --patch-bundle $(ls ./revanced-patches*.jar) \
 	  $forcemark \
 	  --exclude "Swipe controls" \
@@ -28,6 +29,7 @@ for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 
 
 	## sign apk
+	echo sign $YOUTUBEAPK
 	java \
 	  -jar apksigner.jar sign \
 	  --ks "revanced-self-build.keystore" \
@@ -42,6 +44,7 @@ TWITCHAPKS="$(ls ./tv.twitch.android.app*.apk)"
 
 ## patch apk
 for TWITCHAPK in ${TWITCHAPKS}; do
+	echo patch $TWITCHAPK
 	java \
 	  -jar $(ls ./revanced-cli*.jar) patch \
 	  --patch-bundle $(ls ./revanced-patches*.jar) \
@@ -53,6 +56,7 @@ for TWITCHAPK in ${TWITCHAPKS}; do
 
 
 	## sign apk
+	echo sign $TWITCHAPK
 	java \
 	  -jar apksigner.jar sign \
 	  --ks "revanced-self-build.keystore" \
