@@ -1,0 +1,6 @@
+# Set LF for Linux specific script files
+*.sh text eol=lf
+*.bash text eol=lf
+
+# All other files on Auto
+* text=auto
