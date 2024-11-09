@@ -6,8 +6,8 @@ set -e
 change_apt_sources() {
     local mirror_url=$1
     local source_list=$2
-    sed -i "s|http://[^\s]*archive\.ubuntu\.com/ubuntu|$mirror_url|g" $source_list
-    sed -i "s|http://[^\s]*security\.ubuntu\.com/ubuntu|$mirror_url|g" $source_list
+    sed -i "s|http://archive.ubuntu.com/ubuntu|$mirror_url|g" $source_list
+    sed -i "s|http://security.ubuntu.com/ubuntu|$mirror_url|g" $source_list
 }
 
 update_and_upgrade() {
