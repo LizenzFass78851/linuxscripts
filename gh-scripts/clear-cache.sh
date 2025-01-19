@@ -37,7 +37,8 @@ done
 # -------------------------------------------------------------------------------------------------
 main() {
 local GL_GH_TOKEN=<GH_TOKEN>
-clear_gh_cache $GL_GH_TOKEN <GH_ONWER> <GH_REPO>
+local GL_GH_ONWER=<GH_ONWER>
+clear_gh_cache $GL_GH_TOKEN $GL_GH_ONWER <GH_REPO>
 }
 # -------------------------------------------------------------------------------------------------
 
