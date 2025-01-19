@@ -1,9 +1,10 @@
 #!/bin/bash
 
-GH_TOKEN=
-GH_ONWER=
-GH_REPO=
-
+# -------------------------------------------------------------------------------------------------
+clear_gh_cache() {
+local GH_TOKEN=$1
+local GH_ONWER=$2
+local GH_REPO=$3
 
 while :; do
     JSON_OUTPUT=$(curl \
@@ -31,4 +32,14 @@ while :; do
     # Waiting time between iterations to avoid rate limiting
     sleep 5
 done
+}
+
+# -------------------------------------------------------------------------------------------------
+main() {
+local GL_GH_TOKEN=<GH_TOKEN>
+clear_gh_cache $GL_GH_TOKEN <GH_ONWER> <GH_REPO>
+}
+# -------------------------------------------------------------------------------------------------
+
+main
 
