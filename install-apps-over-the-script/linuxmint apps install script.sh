@@ -58,7 +58,8 @@ FLATPAKS="io.github.shiftey.Desktop
 io.github.peazip.PeaZip
 com.anydesk.Anydesk
 com.discordapp.Discord
-com.obsproject.Studio"
+com.obsproject.Studio
+org.onlyoffice.desktopeditors"
 
 HOSTNAME="Test-PC"
 
