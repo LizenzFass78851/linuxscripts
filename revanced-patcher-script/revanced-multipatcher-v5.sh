@@ -20,9 +20,10 @@ for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	  $forcemark \
 	  --disable "Swipe controls" \
 	  --disable "Hide autoplay button" \
-	  --disable "Always autorepeat" \
+	  --disable "Always repeat" \
 	  --disable "Downloads" \
 	  --disable "Alternative thumbnails" \
+	  --enable  "Custom branding" \
 	  --out $(echo $YOUTUBEAPK)_youtube_revanced.apk \
 	  "$YOUTUBEAPK"
 

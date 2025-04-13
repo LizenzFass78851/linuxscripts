@@ -16,9 +16,10 @@ java \
   $forcemark \
   --disable "Swipe controls" \
   --disable "Hide autoplay button" \
-  --disable "Always autorepeat" \
+  --disable "Always repeat" \
   --disable "Downloads" \
   --disable "Alternative thumbnails" \
+  --enable  "Custom branding" \
   --out youtube_revanced.apk \
   "$(ls ./com.google.android.youtube*.apk)"
 
