@@ -15,7 +15,7 @@ YOUTUBEAPKS="$(ls ./com.google.android.youtube*.apk)"
 for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	echo patch $YOUTUBEAPK
 	java \
-          -jar $(ls ./revanced-cli*.jar) patch \
+      -jar $(ls ./revanced-cli*.jar) patch \
 	  --patches $(ls ./patches-*.rvp) \
 	  $forcemark \
 	  --disable "Swipe controls" \
@@ -23,7 +23,9 @@ for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	  --disable "Always repeat" \
 	  --disable "Downloads" \
 	  --disable "Alternative thumbnails" \
-	  --enable  "Custom branding" \
+	  --enable "Custom branding" \
+	  --enable "Custom branding icon for YouTube" \
+	  --enable "Custom branding name for YouTube" \
 	  --out $(echo $YOUTUBEAPK)_youtube_revanced.apk \
 	  "$YOUTUBEAPK"
 

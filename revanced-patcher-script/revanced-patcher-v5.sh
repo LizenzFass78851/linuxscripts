@@ -19,7 +19,9 @@ java \
   --disable "Always repeat" \
   --disable "Downloads" \
   --disable "Alternative thumbnails" \
-  --enable  "Custom branding" \
+  --enable "Custom branding" \
+  --enable "Custom branding icon for YouTube" \
+  --enable "Custom branding name for YouTube" \
   --out youtube_revanced.apk \
   "$(ls ./com.google.android.youtube*.apk)"
 
