@@ -3,8 +3,34 @@
 - All targets with all cpu cores are used when building and broken equals 1
 
 
-#### the following packages are required for ubuntu and debian
+#### the following packages are required for `ubuntu:22.04` and `debian:bookworm`
 Simply enter the command below and all the necessary packages will be installed under ubuntu and debian
-````
-sudo apt update && sudo apt install -y ecdsautils build-essential curl gawk git libncurses-dev lua-check python3 shellcheck time unzip wget rsync subversion qemu-utils zlib1g-dev libssl-dev libelf-dev file
+````bash
+apt update && apt install -y --no-install-recommends \
+    build-essential \
+    ca-certificates \
+    clang \
+    ecdsautils \
+    file \
+    gawk \
+    git \
+    libelf-dev \
+    libncurses5-dev \
+    libnss-unknown \
+    libssl-dev \
+    llvm \
+    lua-check \
+    openssh-client \
+    python3 \
+    python3-dev \
+    python3-pyelftools \
+    python3-setuptools \
+    qemu-utils \
+    rsync \
+    shellcheck \
+    swig \
+    time \
+    unzip \
+    wget \
+    zlib1g-dev
 ````
