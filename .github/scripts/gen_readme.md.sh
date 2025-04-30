@@ -26,7 +26,14 @@ rm $PATCHTHEFILE
 
 # Erstelle die Datei
 # Schicht 1
-echo -e '# Linux Scripts\n\n\na collection of *.sh scripts written for linux\n\n## Overview of the scripts and tools:' | tee $PATCHTHEFILE
+cat <<EOF | tee $PATCHTHEFILE
+# Linux Scripts
+
+
+a collection of *.sh scripts written for linux
+
+## Overview of the scripts and tools:
+EOF
 
 # Die Links
 while read line; do
