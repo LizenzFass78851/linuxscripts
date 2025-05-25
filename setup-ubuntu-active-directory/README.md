@@ -11,3 +11,8 @@
 > [!NOTE]
 > the `PTR_ADDRESS` env are the 3 of 4 parts of the ipv4 address backwards
 > e.g. `192.168.178.0/24` = `178.168.192.in-addr.arpa`
+
+> [!IMPORTANT]
+> - The scripts are optimized for Ubuntu systems.
+> - So far only tested on the following systems:
+>   - `Ubuntu 24.04 Server`
