@@ -160,6 +160,6 @@ systemctl restart chrony
 
 # 15. Create reverse DNS record
 echo "Creating reverse DNS record..."
-samba-tool dns add ${SECONDARY_DC_HOSTNAME}.${REALM} ${PTR_ADDRESS} 220 PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+samba-tool dns add ${SECONDARY_DC_HOSTNAME}.${REALM} ${PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
 
 echo "Additional DC setup complete. Please review the configuration and reboot the system."
