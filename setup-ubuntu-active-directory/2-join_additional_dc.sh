@@ -124,10 +124,10 @@ netplan apply
 # 13. Configure chrony
 echo "Configuring chrony..."
 cat > /etc/chrony/chrony.conf << EOF
-server 0.de.pool.ntp.org iburst
-server 1.de.pool.ntp.org iburst
-server 2.de.pool.ntp.org iburst
-server 3.de.pool.ntp.org iburst
+server 0.pool.ntp.org iburst
+server 1.pool.ntp.org iburst
+server 2.pool.ntp.org iburst
+server 3.pool.ntp.org iburst
 keyfile /etc/chrony/chrony.keys
 driftfile /var/lib/chrony/chrony.drift
 logdir /var/log/chrony
