@@ -40,4 +40,8 @@ EOF
 chmod 600 /etc/netplan/99-${PRIMARY_DC_INTERFACE}-static-${PRIMARY_DC_IP}.yaml
 netplan apply
 
+# 3. Create reverse DNS record for secondary DC 
+echo "Creating reverse DNS record for secondary DC..."
+samba-tool dns add ${SECONDARY_DC_HOSTNAME}.${REALM} ${PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+
 echo "Installation complete. Please review the configuration and reboot the system."

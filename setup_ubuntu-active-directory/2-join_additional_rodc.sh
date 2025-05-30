@@ -91,7 +91,7 @@ rm -f /var/lib/samba/private/*.tdb
 
 # 10. Join Domain
 echo "Joining domain as additional DC..."
-samba-tool domain join ${REALM} DC -U"administrator%${ADMIN_PASSWORD}" \
+samba-tool domain join ${REALM} RODC -U"administrator%${ADMIN_PASSWORD}" \
     --option="interfaces=127.0.0.1 ${SECONDARY_DC_IP}" \
     --option="bind interfaces only=yes" \
     --dns-backend=SAMBA_INTERNAL

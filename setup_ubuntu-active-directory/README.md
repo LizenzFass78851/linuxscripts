@@ -5,8 +5,8 @@
 - Fill out the `.env` file and leave it in the same directory as the scripts.
 
 - Run the `1-install_samba_ad.sh` on the desired DC1 and you're done.
-  - If a second DC is desired, run the `2-join_additional_dc.sh` on the desired DC2 
-  - then run the `3-post-setup_after_join_additional_dc.sh` on DC1 to complete the changes.
+  - If a second DC is desired, run the `2-join_additional_dc.sh` on the desired DC2 or run the `2-join_additional_rodc.sh` on the desired read only DC2 
+  - then run the `3-post-setup_after_join_additional_dc_or_rodc.sh` on DC1 to complete the changes.
 
 > [!NOTE]
 > the `PTR_ADDRESS` env are the 3 of 4 parts of the ipv4 address backwards
