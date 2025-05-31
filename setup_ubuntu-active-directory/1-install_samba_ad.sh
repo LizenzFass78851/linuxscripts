@@ -31,10 +31,10 @@ network:
       dhcp4: no
       routes:
         - to: default
-          via: ${GATEWAY_IP}
+          via: ${PRIMARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
-        addresses: [${GATEWAY_IP}]
+        addresses: [${PRIMARY_DC_GATEWAY_IP}]
 EOF
 chmod 600 /etc/netplan/99-${PRIMARY_DC_INTERFACE}-static-${PRIMARY_DC_IP}.yaml
 netplan apply
@@ -112,7 +112,7 @@ network:
       dhcp4: no
       routes:
         - to: default
-          via: ${GATEWAY_IP}
+          via: ${PRIMARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
         addresses: [${PRIMARY_DC_IP}]
@@ -136,7 +136,7 @@ makestep 1 3
 leapsectz right/UTC
 bindcmdaddress 127.0.0.1
 bindaddress ${PRIMARY_DC_IP}
-allow ${NETWORK}
+allow ${PRIMARY_DC_NETWORK}
 ntpsigndsocket /var/lib/samba/ntp_signd
 EOF
 
@@ -159,7 +159,7 @@ systemctl restart chrony
 
 # 15. Create reverse DNS zone
 echo "Creating reverse DNS zone..."
-samba-tool dns zonecreate ${PRIMARY_DC_HOSTNAME} ${PTR_ADDRESS} -Uadministrator%${ADMIN_PASSWORD}
-samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${PTR_ADDRESS} $(echo ${PRIMARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${PRIMARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+samba-tool dns zonecreate ${PRIMARY_DC_HOSTNAME} ${PRIMARY_DC_PTR_ADDRESS} -Uadministrator%${ADMIN_PASSWORD}
+samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${PRIMARY_DC_PTR_ADDRESS} $(echo ${PRIMARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${PRIMARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
 
 echo "Installation complete. Please review the configuration and reboot the system."

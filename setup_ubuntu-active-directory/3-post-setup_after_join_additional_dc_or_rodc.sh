@@ -32,7 +32,7 @@ network:
       dhcp4: no
       routes:
         - to: default
-          via: ${GATEWAY_IP}
+          via: ${PRIMARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
         addresses: [${PRIMARY_DC_IP}, ${SECONDARY_DC_IP}]
@@ -42,6 +42,9 @@ netplan apply
 
 # 3. Create reverse DNS record for secondary DC 
 echo "Creating reverse DNS record for secondary DC..."
-samba-tool dns add ${SECONDARY_DC_HOSTNAME}.${REALM} ${PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+if [ ! "${PRIMARY_DC_PTR_ADDRESS}" == "${SECONDARY_DC_PTR_ADDRESS}" ]; then
+    samba-tool dns zonecreate ${PRIMARY_DC_HOSTNAME} ${SECONDARY_DC_PTR_ADDRESS} -Uadministrator%${ADMIN_PASSWORD}
+fi
+samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${SECONDARY_DC_PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
 
 echo "Installation complete. Please review the configuration and reboot the system."

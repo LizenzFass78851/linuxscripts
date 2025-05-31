@@ -31,7 +31,7 @@ network:
       dhcp4: no
       routes:
         - to: default
-          via: ${GATEWAY_IP}
+          via: ${SECONDARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
         addresses: [${PRIMARY_DC_IP}]  # Point to primary DC for initial setup
@@ -113,7 +113,7 @@ network:
       dhcp4: no
       routes:
         - to: default
-          via: ${GATEWAY_IP}
+          via: ${SECONDARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
         addresses: [${SECONDARY_DC_IP}, ${PRIMARY_DC_IP}]
@@ -137,7 +137,7 @@ makestep 1 3
 leapsectz right/UTC
 bindcmdaddress 127.0.0.1
 bindaddress ${SECONDARY_DC_IP}
-allow ${NETWORK}
+allow ${SECONDARY_DC_NETWORK}
 ntpsigndsocket /var/lib/samba/ntp_signd
 EOF
 
