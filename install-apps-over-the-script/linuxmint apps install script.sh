@@ -5,7 +5,8 @@
 
 LINKS="https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-$(curl -L -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | grep -o -E "https://(.*)rustdesk-(.*)-$(uname -m).deb" | cut -d ' ' -f 999 )"
+$(curl -L -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | grep -o -E "https://(.*)rustdesk-(.*)-$(uname -m).deb" | cut -d ' ' -f 999 )
+$(curl -L -s https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -o -E "https://(.*)Heroic-(.*)-linux-$(dpkg --print-architecture).deb" | cut -d ' ' -f 999 )"
 
 NEEDEDAPPS="tilix"
 
