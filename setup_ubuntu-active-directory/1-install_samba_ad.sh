@@ -160,6 +160,6 @@ systemctl restart chrony
 # 15. Create reverse DNS zone
 echo "Creating reverse DNS zone..."
 samba-tool dns zonecreate ${PRIMARY_DC_HOSTNAME} ${PRIMARY_DC_PTR_ADDRESS} -Uadministrator%${ADMIN_PASSWORD}
-samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${PRIMARY_DC_PTR_ADDRESS} $(echo ${PRIMARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${PRIMARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${PRIMARY_DC_PTR_ADDRESS} $(echo ${PRIMARY_DC_IP} | awk -F. '{ print $4 }') PTR ${PRIMARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
 
 echo "Installation complete. Please review the configuration and reboot the system."

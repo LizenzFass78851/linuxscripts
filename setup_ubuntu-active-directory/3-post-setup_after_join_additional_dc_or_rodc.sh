@@ -45,6 +45,6 @@ echo "Creating reverse DNS record for secondary DC..."
 if [ ! "${PRIMARY_DC_PTR_ADDRESS}" == "${SECONDARY_DC_PTR_ADDRESS}" ]; then
     samba-tool dns zonecreate ${PRIMARY_DC_HOSTNAME} ${SECONDARY_DC_PTR_ADDRESS} -Uadministrator%${ADMIN_PASSWORD}
 fi
-samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${SECONDARY_DC_PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk --field-separator=. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
+samba-tool dns add ${PRIMARY_DC_HOSTNAME}.${REALM} ${SECONDARY_DC_PTR_ADDRESS} $(echo ${SECONDARY_DC_IP} | awk -F. '{ print $4 }') PTR ${SECONDARY_DC_HOSTNAME}.${REALM} -Uadministrator%${ADMIN_PASSWORD}
 
 echo "Installation complete. Please review the configuration and reboot the system."
