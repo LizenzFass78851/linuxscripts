@@ -23,6 +23,7 @@ apt update && apt install -y --no-install-recommends \
     openssh-client \
     python3 \
     python3-dev \
+    python3-distutils \
     python3-pyelftools \
     python3-setuptools \
     qemu-utils \
