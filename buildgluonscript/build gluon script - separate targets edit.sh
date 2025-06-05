@@ -6,7 +6,7 @@
 
 BROKENS="1"
 
-# for gluon v2023.2.4
+# for gluon v2023.2.5
 TARGETS="armsr-armv7
 armsr-armv8
 ath79-generic
@@ -38,7 +38,7 @@ x86-legacy
 x86-64"
 
 
-git clone --branch v2023.2.4 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2023.2.5 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
