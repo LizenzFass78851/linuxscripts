@@ -9,5 +9,6 @@ a collection of *.sh scripts written for linux
 - [gh-scripts](./gh-scripts)
 - [install-apps-over-the-script](./install-apps-over-the-script)
 - [revanced-patcher-script](./revanced-patcher-script)
+- [setup_debian-active-directory](./setup_debian-active-directory)
 - [setup_ubuntu-active-directory](./setup_ubuntu-active-directory)
 - [setup_ubuntu-server](./setup_ubuntu-server)
