@@ -80,6 +80,8 @@ echo "Joining domain as additional DC..."
 samba-tool domain join ${REALM} RODC -U"administrator%${ADMIN_PASSWORD}" \
     --option="interfaces=127.0.0.1 ${SECONDARY_DC_IP}" \
     --option="bind interfaces only=yes" \
+    --option="idmap_ldb:use rfc2307 = yes" \
+    --option="dns forwarder=${SECONDARY_DC_FORWARDER_DNS}" \
     --dns-backend=SAMBA_INTERNAL
 
 # 11. Copy Kerberos configuration

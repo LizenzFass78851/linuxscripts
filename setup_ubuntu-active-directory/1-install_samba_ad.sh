@@ -34,7 +34,7 @@ network:
           via: ${PRIMARY_DC_GATEWAY_IP}
       nameservers:
         search: [${REALM}]
-        addresses: [${PRIMARY_DC_GATEWAY_IP}]
+        addresses: [${PRIMARY_DC_FORWARDER_DNS}]
 EOF
 chmod 600 /etc/netplan/99-${PRIMARY_DC_INTERFACE}-static-${PRIMARY_DC_IP}.yaml
 netplan apply
@@ -92,7 +92,8 @@ rm -f /var/lib/samba/private/*.tdb
 echo "Provisioning Samba AD..."
 samba-tool domain provision --use-rfc2307 --realm="${REALM}" --domain="${DOMAIN}" \
     --server-role=dc --dns-backend=SAMBA_INTERNAL --adminpass="${ADMIN_PASSWORD}" \
-    --option="interfaces=127.0.0.1 ${PRIMARY_DC_IP}" --option="bind interfaces only=yes"
+    --option="interfaces=127.0.0.1 ${PRIMARY_DC_IP}" --option="bind interfaces only=yes" \
+    --option="dns forwarder=${PRIMARY_DC_FORWARDER_DNS}"
 
 # 11. Copy Kerberos configuration
 echo "Configuring Kerberos..."

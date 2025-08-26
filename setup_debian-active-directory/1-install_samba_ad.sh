@@ -36,7 +36,7 @@ systemctl restart networking
 # 3. Configure resolve file
 cat > /etc/resolv.conf << EOF
 search ${REALM}
-nameserver ${PRIMARY_DC_GATEWAY_IP}
+nameserver ${PRIMARY_DC_FORWARDER_DNS}
 EOF
 
 # 4. Set hostname
@@ -78,7 +78,8 @@ rm -f /var/lib/samba/private/*.tdb
 echo "Provisioning Samba AD..."
 samba-tool domain provision --use-rfc2307 --realm="${REALM}" --domain="${DOMAIN}" \
     --server-role=dc --dns-backend=SAMBA_INTERNAL --adminpass="${ADMIN_PASSWORD}" \
-    --option="interfaces=127.0.0.1 ${PRIMARY_DC_IP}" --option="bind interfaces only=yes"
+    --option="interfaces=127.0.0.1 ${PRIMARY_DC_IP}" --option="bind interfaces only=yes" \
+    --option="dns forwarder=${PRIMARY_DC_FORWARDER_DNS}"
 
 # 11. Copy Kerberos configuration
 echo "Configuring Kerberos..."
@@ -97,7 +98,6 @@ iface ${PRIMARY_DC_INTERFACE} inet static
     address ${PRIMARY_DC_IP}
     netmask 255.255.255.0
     gateway ${PRIMARY_DC_GATEWAY_IP}
-    dns-nameservers ${PRIMARY_DC_IP}
 EOF
 systemctl restart networking
 
