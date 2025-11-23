@@ -8,8 +8,9 @@ local GH_REPO=$3
 
 while :; do
     JSON_OUTPUT=$(curl \
-        -H "Accept: application/vnd.github.v3+json" \
-        -H "Authorization: token $GH_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $GH_TOKEN" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/$GH_ONWER/$GH_REPO/actions/caches)
 
     GH_CACHE_IDS=$(echo "$JSON_OUTPUT" | jq '.actions_caches[] | {id: .id}' | grep "id" | cut -d ':' -f 2 | cut -c 2-)
@@ -22,10 +23,11 @@ while :; do
 
     for GH_CACHE_ID in $GH_CACHE_IDS; do
         echo "Delete Cache-ID: $GH_CACHE_ID"
-        curl \
+        curl -L \
             -X DELETE \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/$GH_ONWER/$GH_REPO/actions/caches/$GH_CACHE_ID
     done
 
