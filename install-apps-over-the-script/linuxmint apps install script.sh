@@ -65,22 +65,8 @@ org.onlyoffice.desktopeditors"
 HOSTNAME="Test-PC"
 
 # ----------------------------------------------------------------------------------
-function errorrmessage() {
-	RESULT=$?
-	if [ $RESULT -ne 0 ]; then
-		echo add apt repo failed;
-		exit 1;
-	fi
-}
-
-function errorrmessage2() {
-	RESULT=$?
-	if [ $RESULT -ne 0 ]; then
-		echo installing apps failed;
-		exit 1;
-	fi
-}
-
+errorrmessage="add apt repo failed"
+errorrmessage2="installing apps failed"
 
 function dockerinstaller() {
 apt remove -y docker docker-engine docker.io containerd runc
@@ -101,11 +87,11 @@ echo \
   "$(. /etc/os-release && echo "$UBUNTU_CODENAME")" stable" | \
   tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-apt update
-errorrmessage
+apt update \
+|| ( echo ${errorrmessage} && exit 1 )
 
-apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-errorrmessage2
+apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+|| ( echo ${errorrmessage2} && exit 1 ) 
 }
 
 rm *.deb
@@ -125,14 +111,14 @@ for TARG1 in ${LINKS}; do
 	fi
 done
 
-apt update
-errorrmessage
+apt update \
+|| ( echo ${errorrmessage} && exit 1 )
 
 apt install -yy \
   ${NEEDEDAPPS} \
   ${APPS} \
-  $(pwd)/$1*.deb
-errorrmessage2
+  $(pwd)/$1*.deb \
+|| ( echo ${errorrmessage2} && exit 1 )
 
 dockerinstaller
 
@@ -145,9 +131,11 @@ for FLATPAKS1 in ${FLATPAKS}; do
 	fi
 done
 
-update-alternatives --set x-terminal-emulator /usr/bin/tilix.wrapper
+if [ -x "$(command -v tilix)" ]; then
+	update-alternatives --set x-terminal-emulator /usr/bin/tilix.wrapper
+fi
 
-echo ${HOSTNAME} > /etc/hostname
+hostnamectl set-hostname ${HOSTNAME}
 
 ## only for local testing
 #passwd -d root 
