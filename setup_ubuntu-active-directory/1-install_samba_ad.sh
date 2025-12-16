@@ -66,7 +66,7 @@ EOF
 # 6. Install required packages
 echo "Installing required packages..."
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y samba heimdal-clients smbclient winbind chrony ldb-tools python3-setproctitle
+DEBIAN_FRONTEND=noninteractive apt-get install -y samba heimdal-clients smbclient winbind chrony ldb-tools python3-setproctitle dnsutils
 
 # 7. Backup original config files
 echo "Backing up original configuration files..."
