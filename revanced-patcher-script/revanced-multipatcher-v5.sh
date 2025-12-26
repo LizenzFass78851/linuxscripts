@@ -25,6 +25,7 @@ for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	  --disable "Alternative thumbnails" \
 	  --enable "Custom branding" \
 	  --enable "Custom branding icon for YouTube" \
+	  --options=appIcon=afn_blue \
 	  --enable "Custom branding name for YouTube" \
 	  --out $(echo $YOUTUBEAPK)_youtube_revanced.apk \
 	  "$YOUTUBEAPK"

@@ -21,6 +21,7 @@ java \
   --disable "Alternative thumbnails" \
   --enable "Custom branding" \
   --enable "Custom branding icon for YouTube" \
+  --options=appIcon=afn_blue \
   --enable "Custom branding name for YouTube" \
   --out youtube_revanced.apk \
   "$(ls ./com.google.android.youtube*.apk)"
