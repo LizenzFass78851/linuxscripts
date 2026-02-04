@@ -7,7 +7,7 @@
 BROKENS="1"
 
 
-git clone --branch v2023.2.5 https://github.com/freifunk-gluon/gluon.git
+git clone --branch v2025.1 https://github.com/freifunk-gluon/gluon.git
 cd gluon
 git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
 make update
