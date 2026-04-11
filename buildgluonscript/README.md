@@ -3,7 +3,7 @@
 - All targets with all cpu cores are used when building and broken equals 1
 
 
-#### the following packages are required for `ubuntu:22.04` and `debian:bookworm`
+#### the following packages are required for `ubuntu:24.04` and `debian:trixie`
 Simply enter the command below and all the necessary packages will be installed under ubuntu and debian
 ````bash
 apt update && apt install -y --no-install-recommends \
