@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 ENV BROKEN=1
 ENV FORCE_UNSAFE_CONFIGURE=1
 
@@ -34,9 +34,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-## of https://gitlab.com/FreifunkChemnitz/gluon-build/-/blob/main/Dockerfile
-RUN git clone --branch v2025.1 https://github.com/freifunk-gluon/gluon.git
+RUN useradd -m -d /gluon -u 100 -g 100 -o gluon
+USER gluon
+VOLUME /gluon
 WORKDIR /gluon
+
+## of https://gitlab.com/FreifunkChemnitz/gluon-build/-/blob/main/Dockerfile
+RUN git clone --branch v2025.1.x https://github.com/freifunk-gluon/gluon.git .
 RUN git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site && \
     make update && \
     export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')" && \
