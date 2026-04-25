@@ -67,7 +67,12 @@ EOF
 # 6. Install required packages
 echo "Installing required packages..."
 apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install -y samba heimdal-clients smbclient winbind chrony ldb-tools python3-setproctitle dnsutils
+if apt-cache show samba-ad-dc 2>/dev/null; then
+    DEBIAN_FRONTEND=noninteractive apt-get install -y samba-ad-dc krb5-user
+else
+    DEBIAN_FRONTEND=noninteractive apt-get install -y samba
+fi
+DEBIAN_FRONTEND=noninteractive apt-get install -y heimdal-clients smbclient winbind chrony ldb-tools python3-setproctitle dnsutils
 
 # 7. Backup original config files
 echo "Backing up original configuration files..."
@@ -78,9 +83,8 @@ mv /etc/chrony/chrony.conf{,.bu.orig}
 
 # 8. Stop and mask standard Samba services
 echo "Stopping and masking standard Samba services..."
-systemctl stop smbd nmbd winbind
-systemctl disable smbd nmbd winbind
-systemctl mask smbd nmbd winbind
+sudo systemctl disable --now smbd nmbd winbind
+sudo systemctl mask smbd nmbd winbind
 
 # 9. Clean up Samba databases
 echo "Cleaning up Samba databases..."

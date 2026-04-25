@@ -16,3 +16,4 @@
 > - The scripts are optimized for Ubuntu systems.
 > - So far only tested on the following systems:
 >   - `Ubuntu 24.04 Server`
+>   - `Ubuntu 26.04 Server`
