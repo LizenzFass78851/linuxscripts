@@ -11,7 +11,7 @@ fi
 # youtube
 ## patch apk
 java \
-  -jar $(ls ./morphe-cli*.jar) patch \
+  -jar $(ls ./morphe-desktop*.jar || ls ./morphe-cli*.jar) patch \
   --patches $(ls ./patches-*.mpp) \
   $forcemark \
   --disable "Swipe controls" \

@@ -15,7 +15,7 @@ YOUTUBEAPKS="$(ls ./com.google.android.youtube*.apk)"
 for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	echo patch $YOUTUBEAPK
 	java \
-      -jar $(ls ./morphe-cli*.jar) patch \
+      -jar $(ls ./morphe-desktop*.jar || ls ./morphe-cli*.jar) patch \
 	  --patches $(ls ./patches-*.mpp) \
 	  $forcemark \
 	  --disable "Swipe controls" \
