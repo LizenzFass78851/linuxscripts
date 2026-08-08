@@ -3,6 +3,12 @@
 # Build all targets as of the defined version from gluon, also broken and use all cpu cores (broken can be set in the script)
 # If there were changes to the targets during gluon, this can also be set in the script
 
+SCRIPT_GLUON_REPO="https://github.com/freifunk-gluon/gluon.git"
+SCRIPT_GLUON_BRANCH="v2025.1.x"
+
+SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkVogtland/site-ffv.git"
+#SCRIPT_GLUON_SITE_REPO="https://gitlab.com/FreifunkChemnitz/site-ffc.git"
+
 # for Gluon v2025.1.x
 # The targets originate from Gluon v2025.1.1
 TARGETS="armsr-armv7
@@ -39,9 +45,9 @@ x86-geode
 x86-legacy
 x86-64"
 
-git clone --branch v2025.1.x https://github.com/freifunk-gluon/gluon.git
+git clone --branch $SCRIPT_GLUON_BRANCH $SCRIPT_GLUON_REPO
 cd gluon
-git clone https://gitlab.com/FreifunkChemnitz/site-ffc.git site
+git clone $SCRIPT_GLUON_SITE_REPO site
 make update
 
 export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')"
