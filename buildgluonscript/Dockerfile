@@ -55,8 +55,9 @@ ARG SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkVogtland/site-ffv.git"
 
 ##################################################
 
-## of https://gitlab.com/FreifunkChemnitz/gluon-build/-/blob/main/Dockerfile
-RUN git clone --branch $SCRIPT_GLUON_BRANCH $SCRIPT_GLUON_REPO .
+## of https://gitlab.com/FreifunkChemnitz/gluon-build/-/blob/main/Dockerfile and modified
+RUN git clone --branch $SCRIPT_GLUON_BRANCH $SCRIPT_GLUON_REPO ./gluon
+WORKDIR ./gluon
 RUN git clone $SCRIPT_GLUON_SITE_REPO site && \
     make update && \
     export DEFAULT_GLUON_RELEASE="b$(date '+%Y%m%d')" && \
