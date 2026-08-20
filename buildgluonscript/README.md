@@ -34,3 +34,21 @@ apt update && apt install -y --no-install-recommends \
     wget \
     zlib1g-dev
 ````
+
+#### How to use the script or Dockerfile
+
+- Without Docker:
+
+```bash
+nano buildgluonscript.sh # if you want to override any default value
+chmod +x buildgluonscript.sh
+./buildgluonscript.sh
+```
+
+- With Docker:
+
+```bash
+nano buildgluonscript.sh # if you want to override any default value
+nano docker-compose.yml  # if you want to override any default value
+docker compose up --build
+```
