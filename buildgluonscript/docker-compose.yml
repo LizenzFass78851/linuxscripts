@@ -1,0 +1,5 @@
+services:
+  freifunk:
+    build: .
+    volumes:
+    - ./output:/workspace/output
