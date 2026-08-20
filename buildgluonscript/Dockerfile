@@ -51,7 +51,7 @@ ARG SCRIPT_GLUON_REPO="https://github.com/freifunk-gluon/gluon.git"
 ARG SCRIPT_GLUON_BRANCH="v2025.1.x"
 
 ARG SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkVogtland/site-ffv.git"
-#ARG SCRIPT_GLUON_SITE_REPO="https://gitlab.com/FreifunkChemnitz/site-ffc.git"
+#ARG SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkChemnitz/site-ffc.git"
 
 ##################################################
 

@@ -7,7 +7,7 @@ SCRIPT_GLUON_REPO="https://github.com/freifunk-gluon/gluon.git"
 SCRIPT_GLUON_BRANCH="v2025.1.x"
 
 SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkVogtland/site-ffv.git"
-#SCRIPT_GLUON_SITE_REPO="https://gitlab.com/FreifunkChemnitz/site-ffc.git"
+#SCRIPT_GLUON_SITE_REPO="https://github.com/FreifunkChemnitz/site-ffc.git"
 
 git clone --branch $SCRIPT_GLUON_BRANCH $SCRIPT_GLUON_REPO
 cd gluon
