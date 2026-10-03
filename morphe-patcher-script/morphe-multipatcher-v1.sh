@@ -24,6 +24,8 @@ for YOUTUBEAPK in ${YOUTUBEAPKS}; do
 	  --disable "Downloads" \
 	  --disable "Alternative thumbnails" \
 	  --enable "Custom branding" \
+	  --enable "Custom branding for YouTube" \
+	  --options=appIcon=afn_blue \
 	  --enable "Custom branding icon for YouTube" \
 	  --options=appIcon=afn_blue \
 	  --enable "Custom branding name for YouTube" \
