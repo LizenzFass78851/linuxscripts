@@ -3,12 +3,16 @@
 # for linuxmint 22.x (ubuntu 24.04)
 # config Links, Apps and Hostname
 
+INSTALL_DOCKER="true"
+
+REMOVE_PASSWORD_ROOT="false"
+REMOVE_PASSWORD_USERS="false"
+AUTOLOGIN_LIGHTDM="false"
+
 LINKS="https://files2.freedownloadmanager.org/6/latest/freedownloadmanager.deb
 https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 $(curl -L -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | grep -o -E "https://(.*)rustdesk-(.*)-$(uname -m).deb" | cut -d ' ' -f 999 )
 $(curl -L -s https://api.github.com/repos/Heroic-Games-Launcher/HeroicGamesLauncher/releases/latest | grep -o -E "https://(.*)Heroic-(.*)-linux-$(dpkg --print-architecture).deb" | cut -d ' ' -f 999 )"
-
-NEEDEDAPPS="tilix"
 
 APPS="adb
 aria2
@@ -46,6 +50,7 @@ steam
 tar
 testdisk
 thunderbird
+tilix
 unzip
 virtualbox
 vlc
@@ -62,11 +67,13 @@ com.discordapp.Discord
 com.obsproject.Studio
 org.onlyoffice.desktopeditors"
 
-HOSTNAME="Test-PC"
+SET_HOSTNAME=""
 
 # ----------------------------------------------------------------------------------
+
 errorrmessage="add apt repo failed"
 errorrmessage2="installing apps failed"
+donemessage="Installation successful"
 
 function dockerinstaller() {
 apt remove -y docker docker-engine docker.io containerd runc
@@ -94,7 +101,13 @@ apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker
 || ( echo ${errorrmessage2} && exit 1 ) 
 }
 
+cleanup() {
 rm *.deb
+}
+
+# ----------------------------------------------------------------------------------
+
+cleanup
 
 USERS=$(ls /home/)
 
@@ -115,18 +128,19 @@ apt update \
 || ( echo ${errorrmessage} && exit 1 )
 
 apt install -yy \
-  ${NEEDEDAPPS} \
   ${APPS} \
   $(pwd)/$1*.deb \
 || ( echo ${errorrmessage2} && exit 1 )
 
-dockerinstaller
+if [ "${INSTALL_DOCKER}" = "true" ]; then
+	dockerinstaller
+fi
 
 for FLATPAKS1 in ${FLATPAKS}; do
 	flatpak install flathub $FLATPAKS1 -y
 	RESULT=$?
 	if [ $RESULT -ne 0 ]; then
-		echo install flatpak $FLATPAKS1 failed;
+		echo "install flatpak $FLATPAKS1 failed";
 		exit 1;
 	fi
 done
@@ -135,17 +149,22 @@ if [ -x "$(command -v tilix)" ]; then
 	update-alternatives --set x-terminal-emulator /usr/bin/tilix.wrapper
 fi
 
-hostnamectl set-hostname ${HOSTNAME}
+if [ -n "$SET_HOSTNAME" ]; then
+	hostnamectl set-hostname ${SET_HOSTNAME}
+fi
 
-## only for local testing
-#passwd -d root 
-#
-#for TARG2 in ${USERS}; do
-#	passwd -d $TARG2
-#done
-#
-#sed -i 's/autologin-user.*$/ /g' /etc/lightdm/lightdm.conf
+if [ "${REMOVE_PASSWORD_ROOT}" = "true" ]; then
+	passwd -d root
+fi
+if [ "${REMOVE_PASSWORD_USERS}" = "true" ]; then
+	for TARG2 in ${USERS}; do
+		passwd -d $TARG2
+	done
+fi
+if [ "${AUTOLOGIN_LIGHTDM}" = "true" ]; then
+	sed -i 's/autologin-user.*$/ /g' /etc/lightdm/lightdm.conf
+fi
 
-rm *.deb
+cleanup
 
-echo Installation successful
+echo ${donemessage} && exit 0
